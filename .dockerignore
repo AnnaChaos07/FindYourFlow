@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.wrangler
+legacy-symfony
+vendor
+var
+timo
+.env*
+.dev.vars*
+.local
+.git
+test-results
+playwright-report

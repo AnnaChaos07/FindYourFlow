@@ -1,0 +1,40 @@
+{
+  "name": "yoga-mit-anna",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:ui": "next dev --hostname 0.0.0.0",
+    "build": "next build --webpack",
+    "preview": "wrangler pages dev out --ip 0.0.0.0",
+    "check:functions": "wrangler pages functions build functions --outdir .wrangler/build",
+    "test": "node --test tests/*.test.mjs",
+    "db:migrate": "node scripts/migrate.mjs",
+    "db:seed": "node scripts/migrate.mjs --seed",
+    "admin:password": "node scripts/password.mjs",
+    "test:browser": "playwright test",
+    "setup:admin": "node scripts/setup-admin.mjs",
+    "setup:check": "node scripts/check-setup.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "check:live": "node scripts/check-live.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "1.1.0",
+    "axios": "^1.13.6",
+    "bootstrap": "^5.3.8",
+    "next": "16.3.4",
+    "react": "^19.2.4",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.2.4",
+    "react-toastify": "^11.0.5"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.14",
+    "@playwright/test": "^1.63.0",
+    "wrangler": "4.130.0"
+  }
+}

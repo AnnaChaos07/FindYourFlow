@@ -1,0 +1,92 @@
+:root {
+    --anna-gold: #ffd794;
+    --anna-navy: #052b5d;
+    --anna-olive: #6f7550;
+    --anna-cream: #fffaf1;
+}
+
+body {
+    background: var(--anna-cream);
+    color: var(--anna-navy);
+}
+
+.site-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-navbar,
+.content-panel,
+.card,
+.dropdown-menu {
+    background-color: #ffffff;
+}
+
+.navbar-brand,
+.nav-link,
+.dropdown-item,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: var(--anna-navy) !important;
+}
+
+.hero-section {
+    background-color: var(--anna-gold);
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--anna-navy) !important;
+    border-color: var(--anna-navy) !important;
+    color: #ffffff !important;
+}
+
+.btn-outline-primary {
+    border-color: var(--anna-navy);
+    color: var(--anna-navy);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--anna-navy);
+    border-color: var(--anna-navy);
+}
+
+.eyebrow,
+.olive-text {
+    color: var(--anna-olive);
+    font-weight: 700;
+    letter-spacing: .08em;
+}
+
+.olive-badge {
+    background-color: var(--anna-olive) !important;
+}
+
+.site-footer {
+    background-color: var(--anna-navy);
+    color: var(--anna-gold);
+}
+
+.hero-image {
+    width: 100%;
+    max-height: 650px;
+    object-fit: cover;
+}
+
+.admin-tabs .nav-link.active {
+    background-color: var(--anna-gold);
+    color: var(--anna-navy) !important;
+}
+
+.cms-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.footer-link { color: var(--anna-gold); }
+.footer-link:hover { color: white; }
+.cms-section-image { max-height: 650px; object-fit: contain; }
+.admin-image-preview { display: block; width: 100%; max-height: 240px; object-fit: contain; }
+.admin-panel fieldset { min-width: 0; }

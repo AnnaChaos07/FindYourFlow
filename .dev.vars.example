@@ -1,0 +1,10 @@
+# Copy to .dev.vars. These values are server-side only.
+DATABASE_URL=""
+# Generate with npm run admin:password (interactive, hidden input).
+ADMIN_PASSWORD_HASH=""
+# Optional fallback; can also be set in the admin panel.
+PURPLE_SLOT_BOOKING_URL="https://find-your-flow.purpleslot.io/"
+# Contact email delivery; use a verified sending domain.
+RESEND_API_KEY=""
+CONTACT_FROM=""
+CONTACT_EMAIL=""
