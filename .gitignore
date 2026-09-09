@@ -13,3 +13,4 @@ timo/
 test-results/
 playwright-report/
 .local/
+/dbData/

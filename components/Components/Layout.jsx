@@ -15,7 +15,7 @@ export default function Layout({ children }) {
   useEffect(() => { api.get('/api/courses').then(({ data }) => setCourses(data)).catch(() => {}); }, [pathname, content]);
   useEffect(() => { setExpanded(false); }, [pathname]);
   useEffect(() => {
-    if (pathname.startsWith('/admin') || pathname.startsWith('/seite')) return;
+    if (['/admin', '/seite', '/impressum', '/datenschutz'].some(path => pathname.startsWith(path))) return;
     const title = pathname.startsWith('/ueber-mich') ? content.aboutTitle : pathname.startsWith('/kontakt') ? content.contactTitle : content.siteName;
     document.title = title === content.siteName ? title : `${title} | ${content.siteName}`;
     document.querySelector('meta[name="description"]')?.setAttribute('content', content.siteDescription);
@@ -41,7 +41,7 @@ export default function Layout({ children }) {
     <main className="flex-grow-1">{children}</main>
     <footer className="site-footer py-4 mt-5"><Container>
       <p className="mb-2 cms-text">{content.footerText.replaceAll('{year}', String(new Date().getFullYear()))}</p>
-      <nav className="d-flex flex-wrap gap-4">{renderMenu(content.footerNavigation, true)}</nav>
+      <nav className="d-flex flex-wrap gap-4">{renderMenu(content.footerNavigation, true)}<SiteLink href="/impressum/" className="footer-link">Impressum</SiteLink><SiteLink href="/datenschutz/" className="footer-link">Datenschutz</SiteLink></nav>
     </Container></footer><ToastContainer position="bottom-right" />
   </div>;
 }
