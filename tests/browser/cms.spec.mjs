@@ -66,11 +66,11 @@ test('edit homepage, publish a custom page, preview it and add a footer link', a
   await expect(footer.getByRole('button', { name: 'Fußmenü speichern' })).toBeDisabled();
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Finde deinen Flow' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Buchen', exact: true })).toHaveAttribute('href', 'https://find-your-flow.purpleslot.io/');
+  await expect(page.getByRole('link', { name: 'Kennenlernen', exact: true })).toHaveAttribute('href', '/kontakt/#kennenlernen');
   await page.locator('footer').getByRole('link', { name: 'Häufige Fragen' }).click();
   await expect(page.getByRole('heading', { name: 'Fragen und Antworten' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Was brauche ich?' })).toBeVisible();
-  await expect(page).toHaveTitle('Fragen und Antworten | Yoga mit Anna');
+  await expect(page).toHaveTitle('Fragen und Antworten | Find Your Flow');
   await page.screenshot({ path: 'test-results/custom-page.png', fullPage: true });
   expect(errors).toEqual([]);
 });
@@ -89,8 +89,9 @@ test('tab changes retain drafts and unpublished courses disappear publicly', asy
   await expect(page.getByRole('button', { name: 'Diesen Bereich speichern' })).toBeDisabled();
   await page.screenshot({ path: 'test-results/admin-panel.png', fullPage: true });
   await page.goto('/');
-  await expect(page.getByRole('link', { name: 'Entwurf der Marke', exact: true })).toBeVisible();
-  await expect(page.getByText('Präventionskurse', { exact: true })).toHaveCount(0);
+  await expect(page.locator('.navbar-brand')).toContainText('Entwurf der Marke');
+  // The editorial overview remains available; the unpublished legacy course does not.
+  await expect(page.locator('a[href="/angebote/?slug=praeventionskurse"]')).toHaveCount(0);
   await page.goto('/angebote/?slug=praeventionskurse');
   await expect(page.getByText('Dieses Angebot ist nicht verfügbar.')).toBeVisible();
 });
@@ -107,9 +108,10 @@ test('contact labels are editable and successful submission clears the form', as
   await expect(page.getByRole('heading', { name: 'Schreib uns' })).toBeVisible();
   await page.getByLabel('Dein Name', { exact: true }).fill('Test');
   await page.getByLabel('E-Mail', { exact: true }).fill('test@example.com');
-  await page.getByLabel('Betreff', { exact: true }).fill('Frage');
+  await page.getByLabel('Thema', { exact: true }).selectOption('Sonstiges');
+  await page.getByRole('checkbox').check();
   await page.getByLabel('Nachricht', { exact: true }).fill('Hallo Anna!');
   await page.getByRole('button', { name: 'Nachricht senden' }).click();
-  await expect(page.getByText('Danke für deine Nachricht!')).toBeVisible();
+  await expect(page.locator('.contact-form [role="status"]')).toHaveText('Danke für deine Nachricht!');
   await expect(page.getByLabel('Dein Name', { exact: true })).toHaveValue('');
 });

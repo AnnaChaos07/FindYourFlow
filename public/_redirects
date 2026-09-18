@@ -1,1 +1,5 @@
+# Serve Next.js static navigation payloads before matching legacy course URLs.
+/angebote/index.txt /angebote/index.txt 200
+/angebote/__next.* /angebote/__next.:splat 200
+/angebote/index.html /angebote/ 301
 /angebote/:slug /angebote/?slug=:slug 302

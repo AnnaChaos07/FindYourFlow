@@ -8,3 +8,8 @@ PURPLE_SLOT_BOOKING_URL="https://find-your-flow.purpleslot.io/"
 RESEND_API_KEY=""
 CONTACT_FROM=""
 CONTACT_EMAIL=""
+
+# Build-time configuration (set in Cloudflare Pages build settings, not secrets).
+# NEXT_PUBLIC_SITE_URL=https://your-confirmed-domain.example
+# Local next dev only; never used in a production build:
+# NEXT_PUBLIC_FLOW_FIXTURES=true

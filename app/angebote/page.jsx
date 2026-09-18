@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
-import Offer from '../../components/Pages/Offer';
-export const metadata = { title: 'Angebote' };
-export default function Offers() {
-  return <Suspense><Offer /></Suspense>;
-}
+import { OffersPage } from '../../components/Flow/Pages';
+import { pageMetadata } from '../../lib/flow-content';
+export const metadata = pageMetadata('angebote');
+export default function Page() { return <Suspense><OffersPage /></Suspense>; }

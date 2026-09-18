@@ -94,7 +94,7 @@ export default function Admin() {
           <Form.Select aria-label="Bereich auswählen" className="mb-4" value={group} onChange={event => setGroup(event.target.value)}>{contentGroups.map(item => <option key={item.name}>{item.name}</option>)}</Form.Select>
           <Form onSubmit={event => { event.preventDefault(); saveContent(selectedGroup.fields.map(([key]) => key), group); }}>
             <h2 className="h4">{group}</h2>
-            {selectedGroup.fields.map(([key, label, , type]) => type === 'image' ? <ImageField key={key} label={label} value={content[key]} onChange={value => changeContent(key, value, group)} /> : <Field key={key} label={label} value={content[key]} multiline={type === 'textarea'} onChange={value => changeContent(key, value, group)} />)}
+            {selectedGroup.fields.map(([key, label, , type]) => type === 'image' ? <ImageField key={key} label={label} value={content[key]} onChange={value => changeContent(key, value, group)} /> : <Field key={key} label={label} value={content[key]} multiline={['textarea', 'events', 'testimonials', 'classes'].includes(type)} onChange={value => changeContent(key, value, group)} />)}
             <Button type="submit" disabled={!dirty.includes(group)}>Diesen Bereich speichern</Button>
           </Form>
         </Tab>

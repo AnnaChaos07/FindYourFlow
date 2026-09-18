@@ -1,7 +1,9 @@
 'use client';
-import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import api from './axiosClient';
-import { defaults } from '../lib/content';
+import { defaults, englishFields } from '../lib/content';
+import { usePathname } from 'next/navigation';
+import { translate } from '../lib/flow-translations';
 
 const SiteContext = createContext({ content: defaults, loading: true, error: false, refresh: async () => {} });
 export function SiteContentProvider({ children }) {
@@ -17,4 +19,9 @@ export function SiteContentProvider({ children }) {
   return <SiteContext.Provider value={{ content, loading, error, refresh }}>{children}</SiteContext.Provider>;
 }
 export const useSiteState = () => useContext(SiteContext);
-export default function useSiteContent() { return useSiteState().content; }
+export default function useSiteContent() {
+  const { content } = useSiteState();
+  const pathname = usePathname();
+  const en = pathname.startsWith('/en');
+  return useMemo(() => en ? { ...content, ...Object.fromEntries(englishFields.map(key => [key, content[key + 'En'] || translate(defaults[key], 'en')])) } : content, [content, en]);
+}

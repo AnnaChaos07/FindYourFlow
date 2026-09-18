@@ -4,8 +4,9 @@ import '../styles/theme.css';
 import Providers from './providers';
 
 export const metadata = {
-  title: { default: 'Yoga mit Anna', template: '%s | Yoga mit Anna' },
-  description: 'Achtsame Bewegung und ehrliche Verbindung für mehr Ruhe, Stärke und Wohlbefinden.',
+  ...(process.env.NEXT_PUBLIC_SITE_URL ? { metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL) } : {}),
+  title: { default: 'Find Your Flow', template: '%s | Find Your Flow' },
+  description: 'Räume für Frauengesundheit, Körperwissen und Verbindung – mit Anna in Berlin und online.',
 };
 
 export default function RootLayout({ children }) {

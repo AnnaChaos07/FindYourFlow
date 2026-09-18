@@ -51,7 +51,7 @@ test('schema is repeatable; public courses and content keep the existing contrac
   const courses = await response.json();
   assert.equal(courses.length, 5);
   assert.equal(courses[0].price, '129.00');
-  assert.equal((await (await call('/content')).json()).heroTitle, 'Ankommen. Atmen. Bei dir sein.');
+  assert.equal((await (await call('/content')).json()).heroTitle, 'Dein Körper.\nDein Rhythmus.\nDein Weg.');
   assert.equal((await call('/courses/missing')).status, 404);
   assert.equal((await call('/bookings', 'POST', {})).status, 410);
 });
@@ -136,7 +136,7 @@ test('image upload persists bytes and rejects SVG and oversized requests', async
 });
 
 test('contact only reports success after provider acceptance and never leaks configuration', async () => {
-  const message = { name: 'Anna', email: 'sender@example.com', subject: 'Frage', message: 'Hallo!' };
+  const message = { name: 'Anna', email: 'sender@example.com', subject: 'Frage', message: 'Hallo!', privacyConsent: true };
   assert.equal((await call('/contact', 'POST', { ...message, email: 'invalid' })).status, 400);
   assert.equal((await call('/contact', 'POST', message)).status, 503);
   const emailEnv = { ...env, RESEND_API_KEY: 'secret-test', CONTACT_FROM: 'website@example.com', CONTACT_EMAIL: 'anna@example.com' };

@@ -12,7 +12,7 @@ export default {
       ];
     },
     async redirects() {
-      return [{ source: '/angebote/:slug', destination: '/angebote/?slug=:slug', permanent: false }];
+      return [{ source: '/angebote/:slug([a-z0-9-]+)', destination: '/angebote/?slug=:slug', permanent: false }];
     },
   } : {}),
 };
